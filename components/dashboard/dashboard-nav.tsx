@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { BarChart3, Inbox, MessageSquare, Settings, Users } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { BarChart3, Inbox, Settings, Users } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function DashboardNav() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const navItems = [
     {
@@ -26,26 +26,21 @@ export function DashboardNav() {
       icon: Users,
     },
     {
-      title: "Feedback",
-      href: "/dashboard/feedback",
-      icon: MessageSquare,
-    },
-    {
       title: "Configurações",
       href: "/dashboard/settings",
       icon: Settings,
     },
-  ]
+  ];
 
   // Função para verificar se a aba está ativa
   const isActive = (href: string) => {
     if (href === "/dashboard") {
       // Dashboard só fica ativo se estiver exatamente em /dashboard
-      return pathname === "/dashboard"
+      return pathname === "/dashboard";
     }
     // Outras abas ficam ativas se o pathname começar com seu href
-    return pathname.startsWith(href)
-  }
+    return pathname.startsWith(href);
+  };
 
   return (
     <nav className="grid items-start gap-2 px-2 py-4">
@@ -55,7 +50,7 @@ export function DashboardNav() {
             variant={isActive(item.href) ? "secondary" : "ghost"}
             className={cn(
               "w-full justify-start",
-              isActive(item.href) && "bg-secondary",
+              isActive(item.href) && "bg-secondary"
             )}
           >
             <item.icon className="mr-2 h-4 w-4" />
@@ -64,5 +59,5 @@ export function DashboardNav() {
         </Link>
       ))}
     </nav>
-  )
+  );
 }
